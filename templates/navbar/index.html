@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="/static/css/style.css">
+<div class="navbar">
+    <nav>
+        <a class="link" href="{{ url_for('home')}}"><h1>Monkey Mesh</h1></a>
+        <ul>
+            <a class="link" href="{{ url_for('home')}}"><li>POST</li></a>
+            <a class="link" href="{{ url_for('post')}}"><button>New Post</button></a>
+            {% if 'username' in session %}
+                <a class="link" href="{{ url_for('dashboard')}}"><img src="/static/img/man.png" alt="User Icon"></a>
+            {% else %}
+                <a class="link" href="{{ url_for('login')}}"><button>Login</button></a>
+                <a class="link" href="{{ url_for('signup')}}"><button>Sign Up</button></a>
+            {% endif %}
+        </ul>
+    </nav>
+</div>

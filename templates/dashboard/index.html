@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monkey Mesh | Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<style>
+    button{
+        margin-left: 10px;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #F9A632;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    }
+</style>
+<body>
+    {% include 'navbar/index.html' %}
+    <div class="container">
+        <div class="dashboard">
+            <div class="profile">
+                {% if profile_pic %}
+                <div style="display: flex;">
+
+                    <img src="{{ profile_pic }}" alt="Profile Picture" class="profile-pic icon">
+                    <a class="link" href="{{ url_for('logout')}}"><button>Log Out</button></a>
+                </div>
+                {% else %}
+                    <img src="/static/img/man.png" alt="Default Profile Picture" class="profile-pic icon">
+                {% endif %}
+                <h2>Welcome, {{ username }}</h2>
+            </div>
+            <div class="posts">
+                {% if post_count > 0 %}
+                    {% for post in posts %}
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="upper">
+                                    {% if post.profile_pic %}
+                                        <img src="{{ post.profile_pic }}" alt="Profile Picture" class="post-profile-pic icon">
+                                    {% else %}
+                                        <img src="/static/img/default-profile.png" alt="Default Profile Picture" class="post-profile-pic">
+                                    {% endif %}
+                                    <h3>{{ post.username }}</h3>
+                                </div>
+                            </div>
+                            <div class="lower">
+                                {% if post.image %}
+                                <img src="{{ post.image }}" alt="Post Image" class="post-image">
+                                {% endif %}
+                            </div>
+                            <p class="content">{{ post.content }}</p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No posts to show.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
